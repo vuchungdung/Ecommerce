@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Data.Configuration;
 using Ecommerce.Data.Entities;
+using Ecommerce.Data.Extensions;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -33,6 +34,7 @@ namespace Ecommerce.Data.EF
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             //base.OnModelCreating(modelBuilder);
+            modelBuilder.Seed();
         }
 
         public DbSet<AppConfig> AppConfigs { set; get; }
