@@ -20,6 +20,7 @@ namespace Ecommerce.Data.Configuration
             builder.Property(x => x.ShipName).IsRequired(true).HasMaxLength(80);
             builder.Property(x => x.ShipEmail).IsRequired(true).IsUnicode(false).HasMaxLength(100);
             builder.Property(x => x.ShipPhoneNumber).IsRequired(true).HasMaxLength(20);
+            builder.HasOne(x => x.AppUser).WithMany(x => x.Orders).HasForeignKey(x => x.UserId).IsRequired();
         }
     }
 }

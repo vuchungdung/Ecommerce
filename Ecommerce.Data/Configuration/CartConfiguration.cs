@@ -19,7 +19,7 @@ namespace Ecommerce.Data.Configuration
             builder.Property(x => x.Price).IsRequired(true).HasDefaultValue(0);
 
             builder.HasOne(x => x.Product).WithMany(s => s.Carts).HasForeignKey(x => x.ProductId);
-
+            builder.HasOne(x => x.AppUser).WithMany(x => x.Carts).HasForeignKey(x => x.UserId).IsRequired();
         }
     }
 }

@@ -12,5 +12,8 @@ namespace Ecommerce.Data.Entities
         public decimal Price { set; get; }
 
         public Product Product { set; get; }
+
+        public Guid UserId { set; get; }
+        public AppUser AppUser { set; get; }
     }
 }
