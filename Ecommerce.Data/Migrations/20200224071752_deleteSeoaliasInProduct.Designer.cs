@@ -4,14 +4,16 @@ using Ecommerce.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ecommerce.Data.Migrations
 {
     [DbContext(typeof(EcommerceDbContext))]
-    partial class EcommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200224071752_deleteSeoaliasInProduct")]
+    partial class deleteSeoaliasInProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,7 +80,7 @@ namespace Ecommerce.Data.Migrations
                         new
                         {
                             Id = new Guid("33544036-8229-499e-a8ac-550b99fad57e"),
-                            ConcurrencyStamp = "0b4dc8b8-3f56-41f2-aa33-77b053320c5e",
+                            ConcurrencyStamp = "827c63aa-51b9-411c-8dd2-c89a0e1d670c",
                             Description = "Admin Role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -155,7 +157,7 @@ namespace Ecommerce.Data.Migrations
                         {
                             Id = new Guid("d0990f4f-c880-4705-a961-777e4a1a91d1"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1a18885b-374e-4c7d-94ed-e8af60e0c6c8",
+                            ConcurrencyStamp = "b987f53a-98a7-4645-acb3-62d62764e059",
                             DateOfBirthday = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "vuchungdunghlym@gmail.com",
                             EmailConfirmed = true,
@@ -164,7 +166,7 @@ namespace Ecommerce.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "vuchungdunghlym@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAv7z3ceJH42WPFEqQ/JwWh53GaLh/ud9t+5cr3XqCk6s0NLD+i5eMNcBxE0i2dZ3A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMy6uj8qTkfpsOPnOPJBeIaiYD+kq6RE2ANKFzT5/O6CRCMh6GQOCM5XqwVVVZz6ug==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -410,7 +412,9 @@ namespace Ecommerce.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2020, 2, 24, 14, 17, 51, 392, DateTimeKind.Local).AddTicks(5043));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -505,47 +509,12 @@ namespace Ecommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2020, 3, 12, 22, 49, 0, 89, DateTimeKind.Local).AddTicks(4539),
+                            DateCreated = new DateTime(2020, 2, 24, 14, 17, 51, 428, DateTimeKind.Local).AddTicks(8524),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
                             ViewCount = 0
                         });
-                });
-
-            modelBuilder.Entity("Ecommerce.Data.Entities.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Caption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("FileSize")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("Ecommerce.Data.Entities.ProductInCategory", b =>
@@ -882,15 +851,6 @@ namespace Ecommerce.Data.Migrations
 
                     b.HasOne("Ecommerce.Data.Entities.Product", "Product")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Ecommerce.Data.Entities.ProductImage", b =>
-                {
-                    b.HasOne("Ecommerce.Data.Entities.Product", "Product")
-                        .WithMany("ProductImages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -4,14 +4,16 @@ using Ecommerce.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ecommerce.Data.Migrations
 {
     [DbContext(typeof(EcommerceDbContext))]
-    partial class EcommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200310024934_addProductImg")]
+    partial class addProductImg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,7 +80,7 @@ namespace Ecommerce.Data.Migrations
                         new
                         {
                             Id = new Guid("33544036-8229-499e-a8ac-550b99fad57e"),
-                            ConcurrencyStamp = "0b4dc8b8-3f56-41f2-aa33-77b053320c5e",
+                            ConcurrencyStamp = "08615137-b759-4ceb-914e-d3682c42fd15",
                             Description = "Admin Role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -155,7 +157,7 @@ namespace Ecommerce.Data.Migrations
                         {
                             Id = new Guid("d0990f4f-c880-4705-a961-777e4a1a91d1"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1a18885b-374e-4c7d-94ed-e8af60e0c6c8",
+                            ConcurrencyStamp = "89075c19-97f2-46a7-8627-4cdc77d80361",
                             DateOfBirthday = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "vuchungdunghlym@gmail.com",
                             EmailConfirmed = true,
@@ -164,7 +166,7 @@ namespace Ecommerce.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "vuchungdunghlym@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAv7z3ceJH42WPFEqQ/JwWh53GaLh/ud9t+5cr3XqCk6s0NLD+i5eMNcBxE0i2dZ3A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKI0fC6XejRFdzDPMetvSs2gyKyxTN9DECS9jB8d5AxDFmz5stjR3H16OjBHGRJh/A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -505,7 +507,7 @@ namespace Ecommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2020, 3, 12, 22, 49, 0, 89, DateTimeKind.Local).AddTicks(4539),
+                            DateCreated = new DateTime(2020, 3, 10, 9, 49, 33, 143, DateTimeKind.Local).AddTicks(3050),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -526,8 +528,8 @@ namespace Ecommerce.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("FileSize")
-                        .HasColumnType("bigint");
+                    b.Property<int>("FileSize")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");

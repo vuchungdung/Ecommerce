@@ -61,5 +61,6 @@ namespace Ecommerce.Data.EF
         public DbSet<Promotion> Promotions { set; get; }
         public DbSet<Transaction> Transactions { set; get; }
 
+        public DbSet<ProductImage> ProductImages { set; get; }
     }
 }
